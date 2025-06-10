@@ -40,13 +40,6 @@
       </div>
     </section>
 
-    <!-- Image panoramique d'un jardin français -->
-    <div class="panorama">
-      <img src="/api/placeholder/1200/400" alt="Vue panoramique du Jardin des Tuileries au printemps, avec ses alignements parfaits et ses fontaines" />
-      <p class="caption">Le Jardin des Tuileries, exemple parfait du jardin à la française et de la symétrie maîtrisée</p>
-    </div>
-    
-
   <!-- Pied de page -->
   <footer>
     <p>&copy; 2025 ESIEE-IT - L'école d'ingénieurs et de l'expertise numérique</p>
