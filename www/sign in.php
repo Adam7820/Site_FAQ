@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +13,7 @@ include "../sql/database.php";
 $db = db_connect();
 
 if (isset($_POST['signinform'])) {
-    // Récupération des données du formumaire
+    // Récupération des données du formulaire
     $role = $_POST['role'];
     $last_name = $_POST['last_name'];
     $first_name = $_POST['first_name'];
@@ -22,6 +21,7 @@ if (isset($_POST['signinform'])) {
     $password = $_POST['password'];
     $confirmed_password = $_POST['confirmed_password'];
 
+    // Stockage des erreurs
     $errors = [];
 
     // En cas d'email incorrect
@@ -52,18 +52,18 @@ if (isset($_POST['signinform'])) {
         $errors[] = 'Les mots de passe ne correspondent pas.';
     }
 
+    // Si aucune erreur, insertion de l'utilisateur dans la BDD
     if (empty($errors)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $req = $db->prepare('INSERT INTO users (role, email, password, first_name, last_name) VALUES (?, ?, ?, ?, ?)');
         $req->execute([$role, $email, $hashed_password, $first_name, $last_name]);
         header("Location: login.php");
-        echo 'Votre compte a été crée avec succès !';
+        exit;
     } else {
         foreach ($errors as $error) {
             echo '<p>' . $error . '</p>' . '<br>';
         }
     }
-
 }
 ?>
 
