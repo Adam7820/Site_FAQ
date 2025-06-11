@@ -1,8 +1,9 @@
 CREATE TABLE users (
     id_user INT PRIMARY KEY AUTO_INCREMENT,
     role ENUM('Élève','Product Owner', 'Responsable') NOT NULL,
-    promotion ENUM('B1','B2','B3') NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     first_name VARCHAR(255) NULL,
     last_name VARCHAR(255) NULL,
-    email VARCHAR(255) NOT NULL,
+    promotion ENUM('B1','B2','B3') NULL
 )
