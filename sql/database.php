@@ -18,5 +18,4 @@ function db_connect() {
         die('Erreur : ' . $e->getMessage());
     }
 }
-$db = db_connect() ;
 ?>

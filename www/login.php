@@ -1,3 +1,11 @@
+<?php
+session_start();
+// Vérifie si l'utilisateur est connecté
+if (isset($_SESSION['userId'])) {
+    header("Location: profile.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,7 +15,6 @@
     <title>Connexion</title>
     <link rel="stylesheet" href="/www/login.css">
 </head>
-<body>
 <?php
 include "../sql/database.php";
 $db = db_connect();
@@ -16,7 +23,7 @@ if (isset($_POST['loginform'])) {
     // Récupération des données du formulaire
     $email = $_POST['email'];
     $password = $_POST['password'];
-    
+
     // Récupération de l'utilisateur dans la BDD
     $req = $db->prepare('SELECT id_user, password FROM users WHERE email = :email');
     $req->execute([':email' => $email]);
@@ -28,7 +35,7 @@ if (isset($_POST['loginform'])) {
 
         // Connexion réussie
         if (isset($_SESSION['userId'])) {
-            header("Location: sign in.php");
+            header("Location: profile.php");
             exit;
         }
     } else {
@@ -36,7 +43,7 @@ if (isset($_POST['loginform'])) {
     }
 }
 ?>
-
+<body>
 <div class="container">
     <h1>Connexion</h1>
     <form method="post">

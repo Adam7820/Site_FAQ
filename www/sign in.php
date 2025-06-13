@@ -1,3 +1,12 @@
+<?php
+session_start();
+// Vérifie si l'utilisateur est connecté
+if (isset($_SESSION['userId'])) {
+    header("Location: profile.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,7 +16,6 @@
     <title>Inscription</title>
     <link rel="stylesheet" href="/www/login.css">
 </head>
-<body>
 <?php
 include "../sql/database.php";
 $db = db_connect();
@@ -66,7 +74,7 @@ if (isset($_POST['signinform'])) {
     }
 }
 ?>
-
+<body>
 <div class="container">
     <h1>Inscription</h1>
     <form method="post">
