@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,7 +13,7 @@
   <header>
     <h1>ESIEE-IT école d'ingénieurs et de l'expertise numérique</h1>
     <nav>
-      <a href="carte_interactive.php">Messagerie</a>
+      <a href="messagerie.php">Messagerie</a>
       <a href="connexion.php">Profil</a>
     </nav>
   </header>
@@ -36,7 +35,7 @@
         </ul>
       </p>
       <div class="button-group">
-        <a href="///////" class="button">Poser une question</a>
+        <a href="messagerie.php" class="button">Poser une question</a>
       </div>
     </section>
 
