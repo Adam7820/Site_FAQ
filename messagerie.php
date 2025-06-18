@@ -17,6 +17,36 @@
     </nav>
   </header>
 
+  <main>
+    <div class="messagerie-header">
+      <h1>Messagerie</h1>
+      <p>Un endroit pour pouvoir contacter un PO ou un résponsable</p>
+    </div>
+
+    <div class="form-container">
+      <form id="messageForm">
+        <div class="form-group">
+          <label for="email">Adresse e-mail :</label>
+          <input type="email" id="email" name="email" placeholder="votre.email@esiee-it.fr" required>
+        </div>
+
+        <div class="form-group">
+          <label for="objet">Objet :</label>
+          <input type="text" id="objet" name="objet" placeholder="Sujet de votre message" required>
+        </div>
+
+        <div class="form-group">
+          <label for="contenu">Contenu du message :</label>
+          <textarea id="contenu" name="contenu" placeholder="Décrivez votre demande, question ou problème en détail..." required></textarea>
+        </div>
+
+        <div class="button-group">
+          <a href="index.php" class="button back-button">Retour à l'accueil</a>
+          <button type="submit" class="button">Envoyer le message</button>
+        </div>
+      </form>
+    </div>
+  </main>
  
   <footer>
     <p>&copy; 2025 ESIEE-IT - L'école d'ingénieurs et de l'expertise numérique</p>
@@ -24,10 +54,9 @@
   </footer>
 
   <script>
-    // Script pour gérer le formulaire (non fonctionnel pour l'instant)
     document.getElementById('messageForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Fonctionnalité d\'envoi en cours de développement. Votre message sera bientôt traité !');
+      alert('Fonctionnalité d\'envoi en cours de développement');
     });
   </script>
 
