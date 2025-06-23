@@ -17,12 +17,26 @@ if (!isset($_SESSION['userId'])) {
 </head>
 <?php
 include "../sql/database.php";
-$db = db_connect();
+$connect = mysqli_connect("localhost", "root", "", "coding_faq");
+
+
+$query = "SELECT * FROM users WHERE id_user = ?";
+$stmt = mysqli_prepare($connect, $query);
+mysqli_stmt_bind_param($stmt, 'i', $_SESSION['userId']);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$row = mysqli_fetch_assoc($result);
+$userRole = $row['role'];
+$userMail = $row['email'];
+$userFName = $row['first_name'];
+$userLName = $row['last_name'];
+$userPromotion = $row['promotion'];
 
 ?>
 <body>
+<h1>Mon Profil</h1>
 <div class="container">
-    <h1>Mon Profil</h1>
+
 </div>
 </body>
 </html>
