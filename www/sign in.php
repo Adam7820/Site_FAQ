@@ -1,4 +1,5 @@
 <?php
+require 'sign in verification.php';
 session_start();
 // Vérifie si l'utilisateur est connecté
 if (isset($_SESSION['userId'])) {
@@ -74,8 +75,10 @@ if (isset($_POST['signinform'])) {
                 'code' => $verification_code
         ];
 
-        mail($email, "Coding FAQ", "Votre code est : $verification_code");
-
+        $result = sendVerification($email, $verification_code);
+        if ($result !== true) {
+            echo $result;
+        }
         $step = "verify";
     } else {
         foreach ($errors as $error) {
@@ -85,7 +88,6 @@ if (isset($_POST['signinform'])) {
 }
 
 if (isset($_POST['verify_form'])) {
-    session_start();
     $entered_code = $_POST['code'];
     $pending = $_SESSION['pending_user'] ?? null;
 
@@ -105,6 +107,7 @@ if (isset($_POST['verify_form'])) {
     }
     else {
         $errors[] = "Code incorrect.";
+        echo 'Le code est incorrect';
         $step = "verify";
     }
 }
