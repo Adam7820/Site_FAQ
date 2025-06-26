@@ -1,6 +1,0 @@
-CREATE TABLE questions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    contenu TEXT NOT NULL,
-    statut ENUM('en_attente', 'valide') DEFAULT 'en_attente',
-    date_envoi DATETIME DEFAULT CURRENT_TIMESTAMP
-);

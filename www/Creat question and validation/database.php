@@ -1,13 +1,11 @@
 <?php
 
-// Database avec Mamp
-
 function db_connect() {
     try {
         $host = "localhost";
         $dbname = "coding_faq";
         $user = "root";
-        $password = "root"; // Mot de passe par défaut avec MAMP
+        $password = "root";
 
         $db = new PDO(
             "mysql:host=$host;dbname=$dbname;charset=utf8",
