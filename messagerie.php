@@ -9,13 +9,11 @@
 </head>
 <body>
 
-  <header>
-    <h1>ESIEE-IT école d'ingénieurs et de l'expertise numérique</h1>
-    <nav>
-      <a href="index.php">Accueil</a>
-      <a href="connexion.php">Profil</a>
-    </nav>
-  </header>
+<?php
+$page_title = "ESIEE-IT école d'ingénieurs et de l'expertise numérique";
+$css_file = "index.css";
+include 'header.php';
+?>
 
   <main>
     <div class="messagerie-header">
@@ -48,10 +46,7 @@
     </div>
   </main>
  
-  <footer>
-    <p>&copy; 2025 ESIEE-IT - L'école d'ingénieurs et de l'expertise numérique</p>
-    <p><a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a> | <a href="#">Crédits photos</a></p>
-  </footer>
+  <?php include 'footer.php'; ?>
 
   <script>
     document.getElementById('messageForm').addEventListener('submit', function(e) {
