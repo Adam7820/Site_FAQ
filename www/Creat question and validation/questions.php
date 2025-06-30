@@ -1,8 +1,6 @@
 <?php
-// Connexion
 $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
 
-// Récupérer toutes les questions validées
 $stmt = $pdo->query("SELECT * FROM questions WHERE statut = 'valide' ORDER BY date_envoi DESC");
 $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

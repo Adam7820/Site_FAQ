@@ -1,8 +1,13 @@
 <?php
-// Connexion à la BDD
+$est_responsable = true;
+
+if (!$est_responsable) {
+    echo "⛔ Accès refusé. Cette page est réservée aux responsables.";
+    exit;
+}
+
 $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
 
-// Ajouter un mot interdit
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nouveau_mot"])) {
     $mot = trim($_POST["nouveau_mot"]);
     if (!empty($mot)) {
@@ -13,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nouveau_mot"])) {
     exit;
 }
 
-// Supprimer un mot interdit
 if (isset($_GET["delete"])) {
     $id = intval($_GET["delete"]);
     $stmt = $pdo->prepare("DELETE FROM mots_interdits WHERE id = ?");
@@ -22,7 +26,6 @@ if (isset($_GET["delete"])) {
     exit;
 }
 
-// Récupérer la liste des mots interdits
 $mots = $pdo->query("SELECT * FROM mots_interdits ORDER BY mot ASC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -43,14 +46,12 @@ $mots = $pdo->query("SELECT * FROM mots_interdits ORDER BY mot ASC")->fetchAll(P
 
 <h2>🛡️ Gestion des mots interdits</h2>
 
-<!-- Formulaire d'ajout -->
 <form method="POST">
     <label for="nouveau_mot">Ajouter un mot interdit :</label><br>
     <input type="text" name="nouveau_mot" id="nouveau_mot" required>
     <button type="submit">Ajouter</button>
 </form>
 
-<!-- Liste des mots interdits -->
 <?php if (count($mots) > 0): ?>
     <table>
         <tr>

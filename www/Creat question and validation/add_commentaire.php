@@ -5,7 +5,6 @@ $id_question = intval($_POST['id_question']);
 $id_parent = isset($_POST['id_parent']) ? intval($_POST['id_parent']) : null;
 $contenu = trim($_POST['contenu']);
 
-// Vérif mots interdits
 $interdits = $pdo->query("SELECT mot FROM mots_interdits")->fetchAll(PDO::FETCH_COLUMN);
 foreach ($interdits as $mot) {
     if (stripos($contenu, $mot) !== false) {
