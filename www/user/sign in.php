@@ -1,4 +1,5 @@
 <?php
+require 'sign in verification.php';
 session_start();
 // Vérifie si l'utilisateur est connecté
 if (isset($_SESSION['userId'])) {
@@ -60,23 +61,61 @@ if (isset($_POST['signinform'])) {
         $errors[] = 'Les mots de passe ne correspondent pas.';
     }
 
-    // Si aucune erreur, insertion de l'utilisateur dans la BDD
+    // Si aucune erreur, sauvegarde des données de l'utilisateur + envoie mail
     if (empty($errors)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $req = $db->prepare('INSERT INTO users (role, email, password, first_name, last_name) VALUES (?, ?, ?, ?, ?)');
-        $req->execute([$role, $email, $hashed_password, $first_name, $last_name]);
-        header("Location: login.php");
-        exit;
+        $verification_code = rand(100000, 999999);
+
+        $_SESSION['pending_user'] = [
+                'role' => $role,
+                'last_name' => $last_name,
+                'first_name' => $first_name,
+                'email' => $email,
+                'password' => $hashed_password,
+                'code' => $verification_code
+        ];
+
+        $result = sendVerification($email, $verification_code);
+        if ($result !== true) {
+            echo $result;
+        }
+        $step = "verify";
     } else {
         foreach ($errors as $error) {
             echo '<p>' . $error . '</p>' . '<br>';
         }
     }
 }
+
+if (isset($_POST['verify_form'])) {
+    $entered_code = $_POST['code'];
+    $pending = $_SESSION['pending_user'] ?? null;
+
+    if ($pending && $entered_code == $pending['code']) {
+        $req = $db->prepare('INSERT INTO users (role, last_name, first_name, email, password) VALUES (?, ?, ?, ?, ?)');
+        $req->execute([
+                $pending['role'],
+                $pending['last_name'],
+                $pending['first_name'],
+                $pending['email'],
+                $pending['password'],
+        ]);
+
+        unset($_SESSION['pending_user']);
+        header("Location: login.php");
+        exit;
+    }
+    else {
+        $errors[] = "Code incorrect.";
+        echo 'Le code est incorrect';
+        $step = "verify";
+    }
+}
 ?>
 <body>
 <div class="container">
     <h1>Inscription</h1>
+    <?php if (!isset($step) || $step !== 'verify'): ?>
     <form method="post">
         <select name="role" required>
             <option value="" disabled selected>Qui suis-je ?</option>
@@ -92,6 +131,13 @@ if (isset($_POST['signinform'])) {
         <button type="submit" name="signinform">S'inscrire</button>
     </form>
     <a href="login.php">J'ai déjà un compte</a>
+    <?php else: ?>
+    <form method="post">
+        <label for="code">Entrez le code de vérification qui vous a été envoyé par mail :</label><br>
+        <input type="text" name="code" required><br>
+        <button type="submit" name="verify_form">Vérifier</button>
+    </form>
+    <?php endif; ?>
 </div>
 </body>
 </html>
