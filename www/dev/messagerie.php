@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <title>Messagerie - ESIEE-IT</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="messagerie.css">
+  <link rel="stylesheet" href="/www/css/messagerie.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <?php
 $page_title = "ESIEE-IT école d'ingénieurs et de l'expertise numérique";
-$css_file = "index.css";
-include 'header.php';
+$css_file = "messagerie.css";
+include '../utils/header.php';
 ?>
 
   <main>
@@ -39,14 +39,14 @@ include 'header.php';
         </div>
 
         <div class="button-group">
-          <a href="index.php" class="button back-button">Retour à l'accueil</a>
+          <a href="/Site_FAQ/www/dev/index.php" class="button back-button">Retour à l'accueil</a>
           <button type="submit" class="button">Envoyer le message</button>
         </div>
       </form>
     </div>
   </main>
  
-  <?php include 'footer.php'; ?>
+  <?php include '../utils/footer.php'; ?>
 
   <script>
     document.getElementById('messageForm').addEventListener('submit', function(e) {

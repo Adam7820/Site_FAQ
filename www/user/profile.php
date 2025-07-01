@@ -13,10 +13,10 @@ if (!isset($_SESSION['userId'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Profil</title>
-    <link rel="stylesheet" href="/www/user/profile.csse.css">
+    <link rel="stylesheet" href="/www/css/profile.css">
 </head>
 <?php
-include "../sql/database.php";
+include "../../sql/database.php";
 $connect = mysqli_connect("localhost", "root", "", "coding_faq");
 
 // Récupération des données de l'utilisateur connecté

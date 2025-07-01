@@ -2,7 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 function sendVerification($toEmail, $code) {
     $mail = new PHPMailer(true);
@@ -17,7 +17,7 @@ function sendVerification($toEmail, $code) {
         $mail->Port       = 587;
 
         $mail->setFrom('faqcoding@gmail.com', 'Coding FAQ');
-        $mail->addAddress('$toEmail');
+        $mail->addAddress($toEmail);
 
         $mail->Subject = 'CODING FAQ VERIFICATION';
         $mail->Body    = "Votre code est : $code";

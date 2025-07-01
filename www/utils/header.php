@@ -13,13 +13,13 @@
     <h1>ESIEE-IT école d'ingénieurs et de l'expertise numérique</h1>
     <nav>
       <?php if (basename($_SERVER['PHP_SELF']) != 'index.php'): ?>
-        <a href="index.php">Accueil</a>
+        <a href="/Site_FAQ/www/dev/index.php">Accueil</a>
       <?php endif; ?>
       
       <?php if (basename($_SERVER['PHP_SELF']) != 'messagerie.php'): ?>
-        <a href="messagerie.php">Messagerie</a>
+        <a href="/Site_FAQ/www/dev/messagerie.php">Messagerie</a>
       <?php endif; ?>
       
-      <a href="connexion.php">Profil</a>
+      <a href="/Site_FAQ/www/user/profile.php">Profil</a>
     </nav>
   </header>

@@ -13,10 +13,10 @@ if (isset($_SESSION['userId'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Connexion</title>
-    <link rel="stylesheet" href="/www/user/login.cssn.css">
+    <link rel="stylesheet" href="/www/css/login.css">
 </head>
 <?php
-include "../sql/database.php";
+include "../../sql/database.php";
 $db = db_connect();
 
 if (isset($_POST['loginform'])) {
@@ -44,6 +44,9 @@ if (isset($_POST['loginform'])) {
 }
 ?>
 <body>
+<?php
+include '../utils/header.php';
+?>
 <div class="container">
     <h1>Connexion</h1>
     <form method="post">
@@ -51,7 +54,10 @@ if (isset($_POST['loginform'])) {
     <input type="password" name="password" placeholder="Mot de passe" required> <br>
     <button type="submit" name="loginform">Se connecter</button>
     </form>
-    <a href="sign in.php">Je n'ai pas de compte</a>
+    <a href="/Site_FAQ/www/user/signin.php">Je n'ai pas de compte</a>
 </div>
+<?php
+include '../utils/footer.php';
+?>
 </body>
 </html>

@@ -15,10 +15,10 @@ if (isset($_SESSION['userId'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Inscription</title>
-    <link rel="stylesheet" href="/www/user/login.cssn.css">
+    <link rel="stylesheet" href="/www/css/login.css">
 </head>
 <?php
-include "../sql/database.php";
+include "../../sql/database.php";
 $db = db_connect();
 
 if (isset($_POST['signinform'])) {
@@ -113,6 +113,9 @@ if (isset($_POST['verify_form'])) {
 }
 ?>
 <body>
+<?php
+include '../utils/header.php';
+?>
 <div class="container">
     <h1>Inscription</h1>
     <?php if (!isset($step) || $step !== 'verify'): ?>
@@ -130,7 +133,7 @@ if (isset($_POST['verify_form'])) {
         <input type="password" name="confirmed_password" placeholder="Confirmer mot de passe" required> <br>
         <button type="submit" name="signinform">S'inscrire</button>
     </form>
-    <a href="login.php">J'ai déjà un compte</a>
+    <a href="/Site_FAQ/www/user/login.php">J'ai déjà un compte</a>
     <?php else: ?>
     <form method="post">
         <label for="code">Entrez le code de vérification qui vous a été envoyé par mail :</label><br>
@@ -139,5 +142,8 @@ if (isset($_POST['verify_form'])) {
     </form>
     <?php endif; ?>
 </div>
+<?php
+include '../utils/footer.php';
+?>
 </body>
 </html>
