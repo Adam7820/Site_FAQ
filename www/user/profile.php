@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Vérifie si l'utilisateur n'est pas connecté
 if (!isset($_SESSION['userId'])) {
     header("Location: login.php");
@@ -13,7 +15,7 @@ if (!isset($_SESSION['userId'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Profil</title>
-    <link rel="stylesheet" href="/www/css/profile.css">
+    <link rel="stylesheet" href="/Site_FAQ/www/css/profile.css">
 </head>
 <?php
 include "../../sql/database.php";
@@ -69,15 +71,14 @@ if (isset($_POST['passwordform'])) {
 
         header("Location: profile.php");
         exit;
-    } else {
-        foreach ($errors as $error) {
-            echo '<p>' . $error . '</p>' . '<br>';
-        }
     }
 }
 
 ?>
 <body>
+<?php
+include '../utils/header.php';
+?>
 <h1>Mon Profil</h1>
 <div class="container">
     <p> <strong>ROLE :</strong> <?php echo htmlspecialchars($userRole); ?> </p>
@@ -88,11 +89,23 @@ if (isset($_POST['passwordform'])) {
     <p> <strong>PROMO :</strong> <?php echo htmlspecialchars($userPromotion); ?> </p>
     <?php endif; ?>
 
+    <?php if (!empty($errors)): ?>
+        <div class="form-errors">
+            <ul>
+                <?php foreach ($errors as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
     <form method="post">
     <input type="password" name="password" placeholder="Ancien mot de passe"> <br>
     <input type="password" name="new_password" placeholder="Nouveau mot de passe"> <br>
     <button type="submit" name="passwordform">Modifier</button>
     </form>
 </div>
+<?php
+include '../utils/footer.php';
+?>
 </body>
 </html>

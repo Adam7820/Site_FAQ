@@ -23,7 +23,6 @@ function sendVerification($toEmail, $code) {
         $mail->Body    = "Votre code est : $code";
 
         $mail->send();
-        echo 'Mail envoyé avec succès !';
         return true;
     } catch (Exception $e) {
         return "Erreur : le mail n'a pas pu être envoyé. $mail->ErrorInfo";

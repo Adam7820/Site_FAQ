@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,9 +27,14 @@
 
       <?php if (
         basename($_SERVER['PHP_SELF']) != 'login.php' &&
-        basename($_SERVER['PHP_SELF']) != 'signin.php'
+        basename($_SERVER['PHP_SELF']) != 'signin.php' &&
+        basename($_SERVER['PHP_SELF']) != 'profile.php'
       ): ?>
       <a href="/Site_FAQ/www/user/profile.php">Profil</a>
+      <?php endif; ?>
+
+      <?php if (isset($_SESSION['userId'])): ?>
+          <a href="/Site_FAQ/www/user/logout.php">Déconnexion</a>
       <?php endif; ?>
     </nav>
   </header>

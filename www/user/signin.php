@@ -1,6 +1,8 @@
 <?php
 require 'sign in verification.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Vérifie si l'utilisateur est connecté
 if (isset($_SESSION['userId'])) {
     header("Location: profile.php");
@@ -36,9 +38,10 @@ if (isset($_POST['signinform'])) {
     // En cas d'email incorrect
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Le format de votre email est incorrect";
-    } else if (!preg_match("/@(edu\.)?esiee-it\.fr$/", $email)) {
-        $errors[] = "Le domaine de votre email n'est pas valide";
     }
+//    else if (!preg_match("/@(edu\.)?esiee-it\.fr$/", $email)) {
+//        $errors[] = "Le domaine de votre email n'est pas valide";
+//    }
 
     // En cas d'email déjà existant
     $req = $db->prepare('SELECT COUNT(*) FROM users WHERE email = ?');
@@ -103,7 +106,6 @@ if (isset($_POST['verify_form'])) {
     }
     else {
         $errors[] = "Code incorrect.";
-        echo 'Le code est incorrect';
         $step = "verify";
     }
 }
