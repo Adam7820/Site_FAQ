@@ -2,6 +2,24 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+
+$isAdmin = false;
+
+if (isset($_SESSION['userId'])) {
+    $connect = mysqli_connect("localhost", "root", "", "coding_faq");
+    $userId = $_SESSION['userId'];
+    $query = "SELECT admin FROM users WHERE id_user = ?";
+    $stmt = mysqli_prepare($connect, $query);
+    mysqli_stmt_bind_param($stmt, 'i', $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+
+    if ($user && $user['admin'] == 1) {
+        $isAdmin = true;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -33,8 +51,12 @@ if (session_status() === PHP_SESSION_NONE) {
       <a href="/Site_FAQ/www/user/profile.php">Profil</a>
       <?php endif; ?>
 
+      <?php if ((basename($_SERVER['PHP_SELF']) != 'admin.php') && $isAdmin): ?>
+        <a href="/Site_FAQ/www/user/admin.php">Admnistration</a>
+      <?php endif; ?>
+
       <?php if (isset($_SESSION['userId'])): ?>
-          <a href="/Site_FAQ/www/user/logout.php">Déconnexion</a>
+        <a href="/Site_FAQ/www/user/logout.php">Déconnexion</a>
       <?php endif; ?>
     </nav>
   </header>

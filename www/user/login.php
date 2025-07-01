@@ -49,7 +49,7 @@ if (isset($_POST['loginform'])) {
 <?php
 include '../utils/header.php';
 ?>
-<div class="container-login">
+<div class="container">
     <h1>Connexion</h1>
     <form method="post">
     <input type="email" name="email" placeholder="Email" required> <br>

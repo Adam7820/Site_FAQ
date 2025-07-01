@@ -1,10 +1,11 @@
 CREATE TABLE users (
     id_user INT PRIMARY KEY AUTO_INCREMENT,
     role ENUM('Élève','Product Owner', 'Responsable') NOT NULL,
+    promotion ENUM('B1','B2','B3') NULL,
+    admin BOOLEAN DEFAULT 0,
     last_name VARCHAR(255) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    code SMALLINT NOT NULL,
-    promotion ENUM('B1','B2','B3') NULL
+    code SMALLINT NOT NULL
 )

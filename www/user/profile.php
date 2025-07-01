@@ -14,7 +14,7 @@ if (!isset($_SESSION['userId'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Profil</title>
+    <title>Profil - ESIEE-IT</title>
     <link rel="stylesheet" href="/Site_FAQ/www/css/profile.css">
 </head>
 <?php
@@ -29,11 +29,12 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($result);
 $userRole = $row['role'];
+$userPromotion = $row['promotion'];
+$userAdmin = $row['admin'];
 $userMail = $row['email'];
 $userPassword = $row['password'];
-$userFName = $row['first_name'];
 $userLName = $row['last_name'];
-$userPromotion = $row['promotion'];
+$userFName = $row['first_name'];
 
 if (isset($_POST['passwordform'])) {
     $password = $_POST['password'];
@@ -82,12 +83,12 @@ include '../utils/header.php';
 <h1>Mon Profil</h1>
 <div class="container">
     <p> <strong>ROLE :</strong> <?php echo htmlspecialchars($userRole); ?> </p>
+    <?php if (!is_null($userPromotion)): ?>
+        <p> <strong>PROMO :</strong> <?php echo htmlspecialchars($userPromotion); ?> </p>
+    <?php endif; ?>
     <p> <strong>EMAIL :</strong> <?php echo htmlspecialchars($userMail); ?> </p>
     <p> <strong>NOM :</strong> <?php echo htmlspecialchars($userLName); ?> </p>
     <p> <strong>PRENOM :</strong> <?php echo htmlspecialchars($userFName); ?> </p>
-    <?php if (!is_null($userPromotion)): ?>
-    <p> <strong>PROMO :</strong> <?php echo htmlspecialchars($userPromotion); ?> </p>
-    <?php endif; ?>
 
     <?php if (!empty($errors)): ?>
         <div class="form-errors">
