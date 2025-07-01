@@ -23,6 +23,7 @@ body {
     color: #e0e0e0;
     text-decoration: none;
     margin: 0 1rem;
+    padding: 2rem;
     font-weight: bold;
     transition: color 0.3s ease;
   }
@@ -160,6 +161,7 @@ body {
   }
   
   footer a {
+    padding: 2rem;
     color: #b0b0b0;
     text-decoration: none;
     transition: color 0.3s ease;

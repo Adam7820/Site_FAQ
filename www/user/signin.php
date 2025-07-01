@@ -14,8 +14,8 @@ if (isset($_SESSION['userId'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Inscription</title>
-    <link rel="stylesheet" href="/www/css/login.css">
+    <title>Inscription - ESIEE-IT</title>
+    <link rel="stylesheet" href="/Site_FAQ/www/css/identification.css">
 </head>
 <?php
 include "../../sql/database.php";
@@ -80,10 +80,6 @@ if (isset($_POST['signinform'])) {
             echo $result;
         }
         $step = "verify";
-    } else {
-        foreach ($errors as $error) {
-            echo '<p>' . $error . '</p>' . '<br>';
-        }
     }
 }
 
@@ -119,6 +115,15 @@ include '../utils/header.php';
 <div class="container">
     <h1>Inscription</h1>
     <?php if (!isset($step) || $step !== 'verify'): ?>
+        <?php if (!empty($errors)): ?>
+            <div class="form-errors">
+                <ul>
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo htmlspecialchars($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
     <form method="post">
         <select name="role" required>
             <option value="" disabled selected>Qui suis-je ?</option>
@@ -132,8 +137,8 @@ include '../utils/header.php';
         <input type="password" name="password" placeholder="Mot de passe" required> <br>
         <input type="password" name="confirmed_password" placeholder="Confirmer mot de passe" required> <br>
         <button type="submit" name="signinform">S'inscrire</button>
+        <a href="/Site_FAQ/www/user/login.php">Je n'ai pas de compte</a>
     </form>
-    <a href="/Site_FAQ/www/user/login.php">J'ai déjà un compte</a>
     <?php else: ?>
     <form method="post">
         <label for="code">Entrez le code de vérification qui vous a été envoyé par mail :</label><br>

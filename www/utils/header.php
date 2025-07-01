@@ -19,7 +19,12 @@
       <?php if (basename($_SERVER['PHP_SELF']) != 'messagerie.php'): ?>
         <a href="/Site_FAQ/www/dev/messagerie.php">Messagerie</a>
       <?php endif; ?>
-      
+
+      <?php if (
+        basename($_SERVER['PHP_SELF']) != 'login.php' &&
+        basename($_SERVER['PHP_SELF']) != 'signin.php'
+      ): ?>
       <a href="/Site_FAQ/www/user/profile.php">Profil</a>
+      <?php endif; ?>
     </nav>
   </header>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>ESIEE-IT école d'ingénieurs et de l'expertise numérique</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/www/css/index.css">
+  <link rel="stylesheet" href="/Site_FAQ/www/css/index.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -34,8 +34,8 @@ include '../utils/header.php';
         <a href="/Site_FAQ/www/dev/messagerie.php" class="button">Poser une question</a>
       </div>
     </section>
-
-    <?php include '../utils/footer.php'; ?>
+  </main>
+<?php include '../utils/footer.php'; ?>
 
 </body>
 </html>
