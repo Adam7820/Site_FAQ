@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>ESIEE-IT école d'ingénieurs et de l'expertise numérique</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Site_FAQ/www/css/index.css">
+  <link rel="stylesheet" href="../css/index.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>

@@ -34,13 +34,7 @@ $mots = $pdo->query("SELECT * FROM mots_interdits ORDER BY mot ASC")->fetchAll(P
 <head>
     <meta charset="UTF-8">
     <title>Gestion des mots interdits</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 10px; }
-        th { background-color: #f5f5f5; }
-        form { margin-top: 20px; }
-    </style>
+    <link rel="stylesheet" href="../css/mots_interdit.css">
 </head>
 <body>
 
@@ -64,7 +58,7 @@ $mots = $pdo->query("SELECT * FROM mots_interdits ORDER BY mot ASC")->fetchAll(P
                 <td><?= $mot['id'] ?></td>
                 <td><?= htmlspecialchars($mot['mot']) ?></td>
                 <td>
-                    <a href="?delete=<?= $mot['id'] ?>" onclick="return confirm('Supprimer ce mot ?')">🗑️ Supprimer</a>
+                    <a class="supprimer" href="?delete=<?= $mot['id'] ?>" onclick="return confirm('Supprimer ce mot ?')">🗑️ Supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -73,7 +67,7 @@ $mots = $pdo->query("SELECT * FROM mots_interdits ORDER BY mot ASC")->fetchAll(P
     <p>Aucun mot interdit pour le moment.</p>
 <?php endif; ?>
 
-<p><a href="menu.php">⬅️ Retour au menu</a></p>
+<p><a href="../dev/index.php" class="button">⬅️ Retour au menu</a></p>
 
 </body>
 </html>

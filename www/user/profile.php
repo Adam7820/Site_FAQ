@@ -15,7 +15,7 @@ if (!isset($_SESSION['userId'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Profil - ESIEE-IT</title>
-    <link rel="stylesheet" href="/Site_FAQ/www/css/profile.css">
+    <link rel="stylesheet" href="../css/profile.css">
 </head>
 <?php
 include "../../sql/database.php";
