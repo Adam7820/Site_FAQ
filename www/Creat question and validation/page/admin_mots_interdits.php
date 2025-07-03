@@ -34,7 +34,7 @@ $mots = $pdo->query("SELECT * FROM mots_interdits ORDER BY mot ASC")->fetchAll(P
 <head>
     <meta charset="UTF-8">
     <title>Gestion des mots interdits</title>
-    <link rel="stylesheet" href="../css/mots_interdit.css">
+    <link rel="stylesheet" href="../../css/mots_interdit.css">
 </head>
 <body>
 
@@ -67,7 +67,7 @@ $mots = $pdo->query("SELECT * FROM mots_interdits ORDER BY mot ASC")->fetchAll(P
     <p>Aucun mot interdit pour le moment.</p>
 <?php endif; ?>
 
-<p><a href="../dev/index.php" class="button">⬅️ Retour au menu</a></p>
+<p><a href="../../dev/index.php" class="button">⬅️ Retour au menu</a></p>
 
 </body>
 </html>

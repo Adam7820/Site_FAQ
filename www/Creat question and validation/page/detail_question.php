@@ -25,14 +25,14 @@ function afficherCommentaires($pdo, $id_question, $id_parent = null, $niveau = 0
         echo '<div class="commentaire" style="margin-left:' . (20 * $niveau) . 'px;">';
         echo '<p>' . htmlspecialchars($com['contenu']) . '</p>';
 
-        echo '<form method="POST" action="add_commentaire.php">';
+        echo '<form method="POST" action="../add_commentaire.php">';
         echo '<input type="hidden" name="id_question" value="' . $id_question . '">';
         echo '<input type="hidden" name="id_parent" value="' . $com['id'] . '">';
         echo '<input type="text" name="contenu" placeholder="Répondre..." required>';
         echo '<button type="submit">Répondre</button>';
         echo '</form>';
 
-        echo '<form method="POST" action="signaler.php" style="display:inline-block;margin-top:5px;">';
+        echo '<form method="POST" action="../signaler.php" style="display:inline-block;margin-top:5px;">';
         echo '<input type="hidden" name="id_commentaire" value="' . $com['id'] . '">';
         echo '<input type="text" name="raison" placeholder="Raison du signalement" required>';
         echo '<button type="submit">Signaler</button>';
@@ -50,7 +50,7 @@ function afficherCommentaires($pdo, $id_question, $id_parent = null, $niveau = 0
 <head>
     <meta charset="UTF-8">
     <title>Détail de la question</title>
-    <link rel="stylesheet" href="../css/detail_question.css">
+    <link rel="stylesheet" href="../../css/detail_question.css">
 </head>
 <script>
     document.querySelectorAll('.niv-pertinence').forEach(button => {
@@ -106,14 +106,14 @@ function afficherCommentaires($pdo, $id_question, $id_parent = null, $niveau = 0
 <?php afficherCommentaires($pdo, $id_question); ?>
 
 <h4>✍️ Ajouter un commentaire :</h4>
-<form method="POST" action="add_commentaire.php" class="form-commentaire">
+<form method="POST" action="../add_commentaire.php" class="form-commentaire">
     <input type="hidden" name="id_question" value="<?= $id_question ?>">
     <textarea name="contenu" rows="3" cols="50" required></textarea>
     <button type="submit">Envoyer</button>
 </form>
 
 
-<p><a href="../dev/index.php" class="button">⬅️ Retour au menu</a></p>
+<p><a href="../../dev/index.php" class="button">⬅️ Retour au menu</a></p>
 
 
 </body>

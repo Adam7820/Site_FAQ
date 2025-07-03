@@ -110,7 +110,7 @@ a.supprimer:hover {
     text-decoration: none;
 }
 
-a[href="../dev/index.php"] {
+a[href="../../dev/index.php"] {
     max-width: 200px;
     margin: auto;
     display: block;
@@ -127,7 +127,7 @@ a[href="../dev/index.php"] {
     box-shadow: 0 4px 15px rgba(100, 7, 62, 0.3);
 }
 
-a[href="../dev/index.php"]:hover {
+a[href="../../dev/index.php"]:hover {
     transform: translateY(-2px);
     background: linear-gradient(135deg, #c41e3a 0%, rgb(100, 7, 62) 100%);
     box-shadow: 0 6px 25px rgba(100, 7, 62, 0.4);}

@@ -10,7 +10,7 @@ $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Questions validées</title>
-    <link rel="stylesheet" href="../css/question_validated.css">
+    <link rel="stylesheet" href="../../css/question_validated.css">
 </head>
 <body>
 <h2>Liste des questions</h2>
@@ -23,7 +23,7 @@ $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 <?php endforeach; ?>
 
-<p><a href="../dev/index.php" class="button">⬅️ Retour au menu</a></p>
+<p><a href="../../dev/index.php" class="button">⬅️ Retour au menu</a></p>
 
 </body>
 </html>
