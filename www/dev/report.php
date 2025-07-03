@@ -3,16 +3,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+include "../../sql/database.php";
+$db = db_connect();
+
 // Traitement du formulaire
 $rapport_envoye = false;
 $erreur = '';
-$reports = [];
-
-// Charger les rapports existants (simulation d'une base de données)
-if (file_exists('reports_data.json')) {
-    $reports_data = file_get_contents('reports_data.json');
-    $reports = json_decode($reports_data, true) ?? [];
-}
+$reports_stmt = $db->query("SELECT * FROM reports ORDER BY date DESC LIMIT 5");
+$reports = $reports_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupération et validation des données
@@ -30,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Créer un nouveau rapport
         $nouveau_rapport = [
-            'id' => uniqid(),
             'nom' => $nom,
             'email' => $email,
             'type_probleme' => $type_probleme,
@@ -39,13 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'date' => date('Y-m-d H:i:s'),
             'status' => 'En attente'
         ];
-        
-        // Ajouter au début du tableau
-        array_unshift($reports, $nouveau_rapport);
-        
-        // Sauvegarder dans le fichier JSON
-        file_put_contents('reports_data.json', json_encode($reports, JSON_PRETTY_PRINT));
-        
+
+        $req = $db->prepare('INSERT INTO reports (nom, email, type_probleme, urgence, description, date, status) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $req->execute([
+            $nouveau_rapport['nom'],
+            $nouveau_rapport['email'],
+            $nouveau_rapport['type_probleme'],
+            $nouveau_rapport['urgence'],
+            $nouveau_rapport['description'],
+            $nouveau_rapport['date'],
+            $nouveau_rapport['status'],
+        ]);
+
         $rapport_envoye = true;
         
         // Réinitialiser le formulaire
@@ -197,51 +199,51 @@ include '../utils/header.php';
 
 <?php include '../utils/footer.php'; ?>
 
-<script>
-    // Compteur de caractères
-    const descriptionTextarea = document.getElementById('description');
-    const charCount = document.getElementById('charCount');
-    const submitBtn = document.getElementById('submitBtn');
-
-    descriptionTextarea.addEventListener('input', function() {
-        const length = this.value.length;
-        charCount.textContent = length;
-        
-        if (length < 20) {
-            charCount.style.color = '#dc3545';
-            submitBtn.disabled = true;
-        } else {
-            charCount.style.color = '#28a745';
-            submitBtn.disabled = false;
-        }
-    });
-
-    // Validation du formulaire
-    document.getElementById('reportForm').addEventListener('submit', function(e) {
-        const nom = document.getElementById('nom').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const type_probleme = document.getElementById('type_probleme').value;
-        const urgence = document.getElementById('urgence').value;
-        const description = document.getElementById('description').value.trim();
-
-        if (!nom || !email || !type_probleme || !urgence || description.length < 20) {
-            e.preventDefault();
-            alert('Veuillez remplir tous les champs obligatoires correctement.');
-            return;
-        }
-
-        // Confirmation selon l'urgence
-        if (urgence === 'Critique') {
-            if (!confirm('⚠️ ATTENTION : Vous avez sélectionné "CRITIQUE".\nCeci nécessite une intervention immédiate.\nÊtes-vous certain que c\'est justifié ?')) {
-                e.preventDefault();
-                return;
-            }
-        }
-    });
-
-    // Initialisation du compteur
-    descriptionTextarea.dispatchEvent(new Event('input'));
-</script>
+<!--<script>-->
+<!--    // Compteur de caractères-->
+<!--    const descriptionTextarea = document.getElementById('description');-->
+<!--    const charCount = document.getElementById('charCount');-->
+<!--    const submitBtn = document.getElementById('submitBtn');-->
+<!---->
+<!--    descriptionTextarea.addEventListener('input', function() {-->
+<!--        const length = this.value.length;-->
+<!--        charCount.textContent = length;-->
+<!--        -->
+<!--        if (length < 20) {-->
+<!--            charCount.style.color = '#dc3545';-->
+<!--            submitBtn.disabled = true;-->
+<!--        } else {-->
+<!--            charCount.style.color = '#28a745';-->
+<!--            submitBtn.disabled = false;-->
+<!--        }-->
+<!--    });-->
+<!---->
+<!--    // Validation du formulaire-->
+<!--    document.getElementById('reportForm').addEventListener('submit', function(e) {-->
+<!--        const nom = document.getElementById('nom').value.trim();-->
+<!--        const email = document.getElementById('email').value.trim();-->
+<!--        const type_probleme = document.getElementById('type_probleme').value;-->
+<!--        const urgence = document.getElementById('urgence').value;-->
+<!--        const description = document.getElementById('description').value.trim();-->
+<!---->
+<!--        if (!nom || !email || !type_probleme || !urgence || description.length < 20) {-->
+<!--            e.preventDefault();-->
+<!--            alert('Veuillez remplir tous les champs obligatoires correctement.');-->
+<!--            return;-->
+<!--        }-->
+<!---->
+<!--        // Confirmation selon l'urgence-->
+<!--        if (urgence === 'Critique') {-->
+<!--            if (!confirm('⚠️ ATTENTION : Vous avez sélectionné "CRITIQUE".\nCeci nécessite une intervention immédiate.\nÊtes-vous certain que c\'est justifié ?')) {-->
+<!--                e.preventDefault();-->
+<!--                return;-->
+<!--            }-->
+<!--        }-->
+<!--    });-->
+<!---->
+<!--    // Initialisation du compteur-->
+<!--    descriptionTextarea.dispatchEvent(new Event('input'));-->
+<!--</script>-->
 
 </body>
 </html>
