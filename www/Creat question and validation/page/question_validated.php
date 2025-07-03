@@ -7,23 +7,24 @@ $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Questions validées</title>
-    <link rel="stylesheet" href="../../css/question_validated.css">
-</head>
-<body>
-<h2>Liste des questions</h2>
 
-<?php foreach ($questions as $q): ?>
-    <div class="question">
-        <a class="acess" href="detail_question.php?id=<?= $q['id'] ?>">
-            <?= html_entity_decode(htmlspecialchars($q['contenu'])) ?>
-        </a>
-    </div>
-<?php endforeach; ?>
+    <head>
+        <meta charset="UTF-8">
+        <title>Questions validées</title>
+        <link rel="stylesheet" href="../../css/question_validated.css">
+    </head>
 
-<p><a href="../../dev/index.php" class="button">⬅️ Retour au menu</a></p>
+    <body>
+        <h2>Liste des questions</h2>
 
-</body>
+        <?php foreach ($questions as $q): ?>
+            <div class="question">
+                <a class="acess" href="detail_question.php?id=<?= $q['id'] ?>">
+                    <?= html_entity_decode(htmlspecialchars($q['contenu'])) ?>
+                </a>
+            </div>
+        <?php endforeach; ?>
+
+        <p><a href="../../dev/index.php" class="button">⬅️ Retour au menu</a></p>
+    </body>
 </html>
