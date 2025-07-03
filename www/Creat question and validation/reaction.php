@@ -1,5 +1,5 @@
 <?php
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
+    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_question = intval($_POST['id_question']);

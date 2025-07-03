@@ -3,20 +3,32 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
+$isResponsable = false;
 $isAdmin = false;
 
 if (isset($_SESSION['userId'])) {
     $connect = mysqli_connect("localhost", "root", "", "coding_faq");
     $userId = $_SESSION['userId'];
-    $query = "SELECT admin FROM users WHERE id_user = ?";
+    $query = "SELECT role FROM users WHERE id_user = ?";
     $stmt = mysqli_prepare($connect, $query);
     mysqli_stmt_bind_param($stmt, 'i', $userId);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     $user = mysqli_fetch_assoc($result);
+    $role = 'Responsable';
 
-    if ($user && $user['admin'] == 1) {
+    if ($user && $user['role'] == $role) {
+        $isResponsable = true;
+    }
+
+    $query1 = "SELECT admin FROM users WHERE id_user = ?";
+    $stmt1 = mysqli_prepare($connect, $query1);
+    mysqli_stmt_bind_param($stmt1, 'i', $userId);
+    mysqli_stmt_execute($stmt1);
+    $result1 = mysqli_stmt_get_result($stmt1);
+    $user1 = mysqli_fetch_assoc($result1);
+
+    if ($user1 && $user1['admin'] == 1) {
         $isAdmin = true;
     }
 }
@@ -51,8 +63,12 @@ if (isset($_SESSION['userId'])) {
       <a href="/Site_FAQ/www/user/profile.php">Profil</a>
       <?php endif; ?>
 
-      <?php if ((basename($_SERVER['PHP_SELF']) != 'admin.php') && $isAdmin): ?>
-        <a href="/Site_FAQ/www/user/admin.php">Admnistration</a>
+      <?php if ((basename($_SERVER['PHP_SELF']) != 'admin.php') && $isResponsable): ?>
+        <a href="/Site_FAQ/www/user/admin.php">Administration</a>
+      <?php endif; ?>
+
+      <?php if ((basename($_SERVER['PHP_SELF']) != 'respondable.php') && $isAdmin): ?>
+          <a href="/Site_FAQ/www/Creat question and validation/page/responsable.php">Questions en attente</a>
       <?php endif; ?>
 
       <?php if (isset($_SESSION['userId'])): ?>

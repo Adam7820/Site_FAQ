@@ -13,7 +13,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Responsable') {
 }
 
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
+    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Erreur : " . $e->getMessage());
@@ -38,7 +38,7 @@ $questions = $pdo->query("SELECT * FROM questions WHERE statut = 'en_attente' OR
             <?php foreach ($questions as $q): ?>
                 <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
                     <p><?= html_entity_decode(htmlspecialchars($q['contenu'])) ?></p>
-                    <form method="POST" action="../process_validation.php" style="display:inline;">
+                    <form method="POST" action="/Site_FAQ/www/Creat question and validation/process_validation.php" style="display:inline;">
                         <input type="hidden" name="id" value="<?= $q['id'] ?>">
                         <button name="action" value="valider">✅ Ajouter</button>
                         <button name="action" value="supprimer" onclick="return confirm('Supprimer cette question ?')">🗑️
@@ -48,6 +48,6 @@ $questions = $pdo->query("SELECT * FROM questions WHERE statut = 'en_attente' OR
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
-        <p><a href="../../dev/index.php" class="button">⬅️ Retour au menu</a></p>
+        <p><a href="/Site_FAQ/www/dev/index.php" class="button">⬅️ Retour au menu</a></p>
     </body>
 </html>

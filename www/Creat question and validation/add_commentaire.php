@@ -1,5 +1,5 @@
 <?php
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
+    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
 
     $id_question = intval($_POST['id_question']);
     $id_parent = isset($_POST['id_parent']) ? intval($_POST['id_parent']) : null;
@@ -16,5 +16,5 @@
     $stmt = $pdo->prepare("INSERT INTO commentaires (id_question, id_parent, contenu) VALUES (?, ?, ?)");
     $stmt->execute([$id_question, $id_parent, $contenu]);
 
-    header("Location: detail_question.php?id=$id_question");
+    header("Location: page/detail_question.php?id=$id_question");
     exit;

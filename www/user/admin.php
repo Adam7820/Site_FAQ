@@ -11,14 +11,15 @@ if (!isset($_SESSION['userId'])) {
 $connect = mysqli_connect("localhost", "root", "", "coding_faq");
 
 $userId = $_SESSION['userId'];
-$query = "SELECT admin FROM users WHERE id_user = ?";
+$query = "SELECT role FROM users WHERE id_user = ?";
 $stmt = mysqli_prepare($connect, $query);
 mysqli_stmt_bind_param($stmt, 'i', $userId);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
+$role = 'Responsable';
 
-if (!$user || $user['admin'] != 1) {
+if (!$user || $user['role'] != $role) {
     header("Location: profile.php");
     exit;
 }

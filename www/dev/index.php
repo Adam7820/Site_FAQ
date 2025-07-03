@@ -31,8 +31,11 @@ include '../utils/header.php';
         </ul>
       </p>
       <div class="button-group">
-        <a href="/Site_FAQ/www/dev/messagerie.php" class="button">Poser une question</a>
+        <a href="/Site_FAQ/www/Creat question and validation/page/create_question.php" class="button">Poser une question</a>
       </div>
+        <div class="button-group">
+            <a href="/Site_FAQ/www/Creat question and validation/page/question_validated.php" class="button">Voir les questions</a>
+        </div>
     </section>
   </main>
 <?php include '../utils/footer.php'; ?>

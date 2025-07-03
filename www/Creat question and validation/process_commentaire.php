@@ -4,7 +4,7 @@
     error_reporting(E_ALL);
 
     try {
-        $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
+        $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         die("Erreur de connexion à la base : " . $e->getMessage());
@@ -16,7 +16,7 @@
         $stmt = $pdo->prepare("INSERT INTO questions (contenu, statut, date_envoi) VALUES (?, 'en_attente', NOW())");
         $stmt->execute([$commentaire]);
 
-        header("Location: merci.php");
+        header("Location: page/merci.php");
         exit;
     } else {
         echo "Le commentaire est vide ou invalide.";

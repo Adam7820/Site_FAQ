@@ -12,6 +12,6 @@
 
         <p>Votre question sera analysée par un responsable. Si elle est pertinente, elle sera publiée.</p>
 
-        <p><a href="../../dev/index.php" class="button">⬅️ Retour au menu</a></p>
+        <p><a href="/Site_FAQ/www/dev/index.php" class="button">⬅️ Retour au menu</a></p>
     </body>
 </html>

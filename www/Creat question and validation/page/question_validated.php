@@ -1,5 +1,5 @@
 <?php
-$pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
+$pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
 
 $stmt = $pdo->query("SELECT * FROM questions WHERE statut = 'valide' ORDER BY date_envoi DESC");
 $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -25,6 +25,6 @@ $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         <?php endforeach; ?>
 
-        <p><a href="../../dev/index.php" class="button">⬅️ Retour au menu</a></p>
+        <p><a href="/Site_FAQ/www/dev/index.php" class="button">⬅️ Retour au menu</a></p>
     </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
+    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
 
     $id_question = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -109,12 +109,12 @@
 
         <h4>✍️ Ajouter un commentaire :</h4>
 
-        <form method="POST" action="../add_commentaire.php" class="form-commentaire">
+        <form method="POST" action="/Site_FAQ/www/Creat question and validation/add_commentaire.php" class="form-commentaire">
             <input type="hidden" name="id_question" value="<?= $id_question ?>">
             <textarea name="contenu" rows="3" cols="50" required></textarea>
             <button type="submit">Envoyer</button>
         </form>
 
-        <p><a href="../../dev/index.php" class="button">⬅️ Retour au menu</a></p>
+        <p><a href="/Site_FAQ/www/dev/index.php" class="button">⬅️ Retour au menu</a></p>
     </body>
 </html>
