@@ -32,6 +32,7 @@ include 'header.php';
       </p>
       <div class="button-group">
         <a href="messagerie.php" class="button">Poser une question</a>
+        <a href="report.php" class="button button-report">🚨 Signaler un problème</a>
       </div>
     </section>
 
