@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $niveau = $_POST['niveau'];
     $ip = $_SERVER['REMOTE_ADDR']; // On simule l'utilisateur par IP
 
-    // Supprimer l'ancienne réaction si elle existe
     $check = $pdo->prepare("SELECT * FROM reactions WHERE id_question = ? AND id_user = ?");
     $check->execute([$id_question, crc32($ip)]);
     if ($check->rowCount() > 0) {
@@ -14,17 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ->execute([$id_question, crc32($ip)]);
     }
 
-    // Ajouter la nouvelle réaction
     $insert = $pdo->prepare("INSERT INTO reactions (id_question, id_user, niveau) VALUES (?, ?, ?)");
     $insert->execute([$id_question, crc32($ip), $niveau]);
 
-    // Vérifier si on a atteint 20 rouges
     $count_red = $pdo->prepare("SELECT COUNT(*) FROM reactions WHERE id_question = ? AND niveau = 'rouge'");
     $count_red->execute([$id_question]);
     $nb_rouges = $count_red->fetchColumn();
 
     if ($nb_rouges >= 20) {
-        // Supprimer la question
         $pdo->prepare("DELETE FROM questions WHERE id = ?")->execute([$id_question]);
         $pdo->prepare("DELETE FROM reactions WHERE id_question = ?")->execute([$id_question]);
         $pdo->prepare("DELETE FROM commentaires WHERE id_question = ?")->execute([$id_question]);

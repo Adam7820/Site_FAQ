@@ -18,7 +18,7 @@ $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php foreach ($questions as $q): ?>
     <div class="question">
         <a class="acess" href="detail_question.php?id=<?= $q['id'] ?>">
-            <?= htmlspecialchars($q['contenu']) ?>
+            <?= html_entity_decode(htmlspecialchars($q['contenu'])) ?>
         </a>
     </div>
 <?php endforeach; ?>
