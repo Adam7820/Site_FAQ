@@ -1,3 +1,8 @@
+/* Styles spécifiques pour la messagerie (complément aux styles globaux) */
+/* Les styles du header et footer sont gérés par les includes */
+
+/* Main content */
+main {
 body {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
@@ -6,7 +11,7 @@ body {
     padding: 0;
     min-height: 100vh;
   }
-  
+
   header {
     background: linear-gradient(135deg, #2f2f30 0%, #1a1a1a 100%);
     color: rgb(100, 7, 62);
@@ -14,11 +19,11 @@ body {
     text-align: center;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   }
-  
+
   nav {
     margin-top: 1rem;
   }
-  
+
   nav a {
     color: #e0e0e0;
     text-decoration: none;
@@ -27,139 +32,195 @@ body {
     font-weight: bold;
     transition: color 0.3s ease;
   }
-  
+
   nav a:hover {
     color: rgb(100, 7, 62);
   }
-  
+
   main {
     padding: 2rem;
     max-width: 800px;
-    margin: auto;
+    margin: 2rem auto;
+    padding: 0 1rem;
   }
   
   .messagerie-header {
     text-align: center;
     margin-bottom: 2rem;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .messagerie-header h1 {
-    color: #ffffff;
     font-size: 2.5rem;
+    color: #2c3e50;
     margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
   
   .messagerie-header p {
-    color: #b0b0b0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    color: #6c757d;
   }
   
+  /* Form container */
   .form-container {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   }
   
+  /* Form groups */
   .form-group {
     margin-bottom: 1.5rem;
   }
   
-  label {
+  .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #e0e0e0;
     font-weight: 600;
-    font-size: 1rem;
+    color: #495057;
   }
   
-  input[type="email"],
-  input[type="text"],
-  textarea {
+  .form-group input,
+  .form-group textarea {
     width: 100%;
-    padding: 1rem;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    color: #e0e0e0;
-    font-family: 'Inter', sans-serif;
+    padding: 0.75rem;
+    border: 2px solid #e9ecef;
+    border-radius: 5px;
     font-size: 1rem;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
   
-  input[type="email"]:focus,
-  input[type="text"]:focus,
-  textarea:focus {
+  .form-group input:focus,
+  .form-group textarea:focus {
     outline: none;
-    border-color: rgb(100, 7, 62);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 20px rgba(100, 7, 62, 0.3);
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
   }
   
-  input[type="email"]::placeholder,
-  input[type="text"]::placeholder,
-  textarea::placeholder {
-    color: #888;
-  }
-  
-  textarea {
-    min-height: 150px;
+  .form-group textarea {
     resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #6c757d;
+    font-size: 12px;
+  }
+
+  /* Quick emails */
+  .quick-emails {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+    border: 1px solid #dee2e6;
   }
   
+  .quick-emails h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #495057;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .email-button {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 12px;
+    margin: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+  }
+
+  .email-button:hover {
+    background: #0056b3;
+  }
+
+  /* Character counter */
+  .char-counter {
+    font-size: 12px;
+    color: #6c757d;
+    text-align: right;
+    margin-top: 5px;
+  }
+
+  /* Buttons */
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
   .button {
     display: inline-block;
-    background: linear-gradient(135deg, rgb(100, 7, 62) 0%, #c41e3a 100%);
-    color: white;
-    padding: 1rem 2rem;
-    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
+    border-radius: 5px;
     font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(100, 7, 62, 0.3);
+    text-align: center;
   }
   
   .button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(100, 7, 62, 0.4);
-    background: linear-gradient(135deg, #c41e3a 0%, rgb(100, 7, 62) 100%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .button[type="submit"] {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+  }
+
+  .button[type="submit"]:hover {
+    background: linear-gradient(135deg, #218838, #1fa085);
+  }
+
+  .button[type="submit"]:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
   }
   
   .back-button {
-    background: linear-gradient(135deg, #444 0%, #666 100%);
-    margin-right: 1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    background: #6c757d;
+    color: white;
   }
   
   .back-button:hover {
-    background: linear-gradient(135deg, #666 0%, #444 100%);
-    box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+    background: #5a6268;
+  }
+
+  /* Alerts */
+  .alert {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
-  footer {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2f2f30 100%);
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.9rem;
-    color: #888;
-    margin-top: 3rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
   }
   
+  .alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
   footer a {
     padding: 2rem;
     color: #b0b0b0;
@@ -167,20 +228,62 @@ body {
     transition: color 0.3s ease;
   }
   
-  footer a:hover {
-    color: rgb(100, 7, 62);
+  .debug-info {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+    font-size: 12px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
   }
   
+
+
+  /* Responsive design */
   @media (max-width: 768px) {
-    main {
-      padding: 1rem;
-    }
-    
-    .form-container {
-      padding: 1.5rem;
-    }
-    
     .messagerie-header h1 {
       font-size: 2rem;
+    }
+
+    .form-container {
+      padding: 1rem;
+    }
+
+    .button-group {
+      flex-direction: column;
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    header nav a {
+      margin: 0 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    main {
+      padding: 0 0.5rem;
+    }
+
+    .messagerie-header h1 {
+      font-size: 1.8rem;
+    }
+
+    .messagerie-header p {
+      font-size: 1rem;
+    }
+
+    .email-button {
+      display: block;
+      margin: 3px 0;
+      text-align: center;
     }
   }
