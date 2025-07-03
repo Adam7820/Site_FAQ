@@ -166,3 +166,35 @@ p {
 }
 
 
+p.question-texte {
+    font-size: 1.4rem;
+    color: #f0f0f0;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 2rem auto;
+    line-height: 1.7;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+p.question-texte:hover {
+    transform: scale(1.02);
+}
+
+
+.form-commentaire {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.form-commentaire textarea {
+    width: 100%;
+    max-width: 600px;
+}

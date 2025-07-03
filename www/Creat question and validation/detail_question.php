@@ -86,7 +86,7 @@ function afficherCommentaires($pdo, $id_question, $id_parent = null, $niveau = 0
 <body>
 
 <h2>📌 Question :</h2>
-<p><?= htmlspecialchars($question['contenu']) ?></p>
+<p class="question-texte"><?= html_entity_decode(htmlspecialchars($question['contenu'])) ?></p>
 
 <h4>📊 Merci de juger le niveau de pertinence :</h4>
 
@@ -106,11 +106,12 @@ function afficherCommentaires($pdo, $id_question, $id_parent = null, $niveau = 0
 <?php afficherCommentaires($pdo, $id_question); ?>
 
 <h4>✍️ Ajouter un commentaire :</h4>
-<form method="POST" action="add_commentaire.php">
+<form method="POST" action="add_commentaire.php" class="form-commentaire">
     <input type="hidden" name="id_question" value="<?= $id_question ?>">
-    <textarea name="contenu" rows="3" cols="50" required></textarea><br>
+    <textarea name="contenu" rows="3" cols="50" required></textarea>
     <button type="submit">Envoyer</button>
 </form>
+
 
 <p><a href="../dev/index.php" class="button">⬅️ Retour au menu</a></p>
 
