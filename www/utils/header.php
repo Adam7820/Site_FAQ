@@ -64,10 +64,14 @@ if (isset($_SESSION['userId'])) {
       <?php endif; ?>
 
       <?php if ((basename($_SERVER['PHP_SELF']) != 'admin.php') && $isResponsable): ?>
+          <a href="/Site_FAQ/www/Creat question and validation/page/admin_mots_interdits.php">Mot interdits</a>
+      <?php endif; ?>
+
+      <?php if ((basename($_SERVER['PHP_SELF']) != 'admin.php') && $isResponsable): ?>
         <a href="/Site_FAQ/www/user/admin.php">Administration</a>
       <?php endif; ?>
 
-      <?php if ((basename($_SERVER['PHP_SELF']) != 'respondable.php') && $isAdmin): ?>
+      <?php if ((basename($_SERVER['PHP_SELF']) != 'respondable.php') && $isAdmin || $isResponsable): ?>
           <a href="/Site_FAQ/www/Creat question and validation/page/responsable.php">Questions en attente</a>
       <?php endif; ?>
 

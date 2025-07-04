@@ -30,11 +30,13 @@ include '../utils/header.php';
           <li>Contacter un PO ou un responsable</li>
         </ul>
       </p>
+        <?php if (isset($_SESSION['userId'])): ?>
       <div class="button-group">
         <a href="/Site_FAQ/www/Creat question and validation/page/create_question.php" class="button">Poser une question</a>
         <a href="/Site_FAQ/www/Creat question and validation/page/question_validated.php" class="button">Voir les questions</a>
         <a href="report.php" class="button button-report">🚨 Signaler un problème</a>
       </div>
+        <?php endif; ?>
     </section>
   </main>
 <?php include '../utils/footer.php'; ?>

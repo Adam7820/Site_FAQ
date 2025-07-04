@@ -139,7 +139,7 @@ include '../utils/header.php';
         <input type="password" name="password" placeholder="Mot de passe" required> <br>
         <input type="password" name="confirmed_password" placeholder="Confirmer mot de passe" required> <br>
         <button type="submit" name="signinform">S'inscrire</button>
-        <a href="/Site_FAQ/www/user/login.php">Je n'ai pas de compte</a>
+        <a href="/Site_FAQ/www/user/login.php">J'ai déjà un compte</a>
     </form>
     <?php else: ?>
     <form method="post">

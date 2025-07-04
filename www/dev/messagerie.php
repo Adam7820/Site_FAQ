@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Inclure PHPMailer (vous devez installer PHPMailer via Composer ou télécharger les fichiers)
-require_once 'vendor/autoload.php'; // Si installé via Composer
+require_once '../../vendor/autoload.php'; // Si installé via Composer
 // OU
 // require_once 'PHPMailer/src/PHPMailer.php';
 // require_once 'PHPMailer/src/SMTP.php';
@@ -155,9 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <title>Messagerie - ESIEE-IT</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/messagerie.css">
-  <link rel="stylesheet" href="/Site_FAQ/messagerie.css">
-  <link rel="stylesheet" href="/Site_FAQ/index.php">
+  <link rel="stylesheet" href="/Site_FAQ/www/css/messagerie.css">
+  <link rel="stylesheet" href="/Site_FAQ/www/css/index.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -232,8 +231,6 @@ include '../utils/header.php';
         </div>
 
         <div class="button-group">
-          <a href="/Site_FAQ/www/dev/index.php" class="button back-button">Retour à l'accueil</a>
-          <button type="submit" class="button" id="submitBtn">Envoyer le message</button>
           <a href="/Site_FAQ/www/dev/index.php" class="button back-button">Retour à l'accueil</a>
           <button type="submit" class="button">Envoyer le message</button>
         </div>
