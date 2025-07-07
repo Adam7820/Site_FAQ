@@ -3,6 +3,21 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+if ((isset($_SESSION['userId']))){
+    include "../../sql/database.php";
+    $connect = mysqli_connect("localhost", "root", "", "coding_faq");
+
+    $userId = $_SESSION['userId'];
+
+    $query = "SELECT email FROM users WHERE id_user = ?";
+    $stmt = mysqli_prepare($connect, $query);
+    mysqli_stmt_bind_param($stmt, 'i', $_SESSION['userId']);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $userData = mysqli_fetch_assoc($result);
+    $userEmail = $userData ? $userData['email'] : '';
+}
+
 // Inclure PHPMailer (vous devez installer PHPMailer via Composer ou télécharger les fichiers)
 require_once '../../vendor/autoload.php'; // Si installé via Composer
 // OU
@@ -11,17 +26,16 @@ require_once '../../vendor/autoload.php'; // Si installé via Composer
 // require_once 'PHPMailer/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Configuration SMTP - À MODIFIER selon votre fournisseur
 $smtp_config = [
     'host' => 'smtp.gmail.com',        // Serveur SMTP (Gmail, Outlook, etc.)
     'port' => 587,                     // Port SMTP (587 pour TLS, 465 pour SSL)
-    'username' => 'votre-email@gmail.com',  // Votre email
-    'password' => 'votre-mot-de-passe',      // Votre mot de passe ou mot de passe d'application
+    'username' => 'faqcoding@gmail.com',  // Votre email
+    'password' => 'vxsw jgfu omqg nfgh',      // Votre mot de passe ou mot de passe d'application
     'encryption' => PHPMailer::ENCRYPTION_STARTTLS,  // TLS ou SSL
-    'from_email' => 'votre-email@gmail.com',
+    'from_email' => 'faqcoding@gmail.com',
     'from_name' => 'Messagerie ESIEE-IT'
 ];
 
@@ -138,9 +152,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->send();
             $message_envoye = true;
 
-            // Log de l'envoi (optionnel)
             $log_entry = date('Y-m-d H:i:s') . " - Email envoyé de " . $email_expediteur . " vers " . $destinataire . " - Objet: " . $objet . "\n";
             file_put_contents('emails_log.txt', $log_entry, FILE_APPEND | LOCK_EX);
+
+            header("Location: messagerie.php");
+            exit;
 
         } catch (Exception $e) {
             $erreur = "Erreur lors de l'envoi du message : " . $mail->ErrorInfo;
@@ -196,7 +212,7 @@ include '../utils/header.php';
         <div class="form-group">
           <label for="email">Votre adresse e-mail :</label>
           <input type="email" id="email" name="email" placeholder="votre.email@esiee-it.fr"
-                 value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
+                 value="<?php echo htmlspecialchars($_POST['email'] ?? $userEmail ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
           <small>Cette adresse sera utilisée pour les réponses</small>
         </div>
 
@@ -240,52 +256,7 @@ include '../utils/header.php';
  
   <?php include '../utils/footer.php'; ?>
 
-  <script>
-    // Fonction pour définir le destinataire
-    function setDestinataire(email) {
-      document.getElementById('destinataire').value = email;
-    }
 
-    // Compteur de caractères
-    const contenuTextarea = document.getElementById('contenu');
-    const charCount = document.getElementById('charCount');
-    const submitBtn = document.getElementById('submitBtn');
-
-    contenuTextarea.addEventListener('input', function() {
-      const length = this.value.length;
-      charCount.textContent = length;
-
-      if (length < 10) {
-        charCount.style.color = '#dc3545';
-        submitBtn.disabled = true;
-      } else {
-        charCount.style.color = '#28a745';
-        submitBtn.disabled = false;
-      }
-    });
-
-    // Validation du formulaire
-    document.getElementById('messageForm').addEventListener('submit', function(e) {
-      const email = document.getElementById('email').value;
-      const destinataire = document.getElementById('destinataire').value;
-      const objet = document.getElementById('objet').value;
-      const contenu = document.getElementById('contenu').value;
-
-      if (!email || !destinataire || !objet || contenu.length < 10) {
-        e.preventDefault();
-        alert('Veuillez remplir tous les champs correctement.');
-        return;
-      }
-
-      // Confirmation avant envoi
-      if (!confirm('Êtes-vous sûr de vouloir envoyer ce message ?')) {
-        e.preventDefault();
-      }
-    });
-
-    // Initialisation du compteur
-    contenuTextarea.dispatchEvent(new Event('input'));
-  </script>
 
 </body>
 </html>
