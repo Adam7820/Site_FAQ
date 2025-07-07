@@ -4,7 +4,7 @@ function db_connect() {
         $host = "localhost";
         $dbname ="coding_faq"; // Nom de votre base de données
         $user = "root"; // Nom d'utilisateur par défaut pour XAMPP
-        $password = ""; // Mot de passe vide par défaut pour XAMPP
+        $password = "root"; // Mot de passe vide par défaut pour XAMPP
 
         $db = new PDO(
             "mysql:host=$host;dbname=$dbname;charset=utf8",
