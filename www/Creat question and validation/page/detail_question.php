@@ -1,7 +1,7 @@
 <?php
 session_start();
-$pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
-$_SESSION['id_user'] = 1; // Pour test uniquement
+$pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
+$_SESSION['id_user'] = $_SESSION['userId'] ?? 1;
 
 $id_question = intval($_GET['id'] ?? 0);
 
@@ -37,7 +37,7 @@ function afficherReponses($pdo, $id_parent, $niveau = 1) {
         echo '<p><strong>' . htmlspecialchars($r['first_name'] . ' ' . $r['last_name']) . ' :</strong> ' . htmlspecialchars($r['contenu']) . '</p>';
 
         // Répondre
-        echo '<form method="POST" action="../add_commentaire.php">';
+        echo '<form method="POST" action="add_commentaire.php">';
         echo '<input type="hidden" name="id_question" value="' . $r['id_question'] . '">';
         echo '<input type="hidden" name="id_parent" value="' . $r['id'] . '">';
         echo '<input type="text" name="contenu" placeholder="Répondre..." required>';
@@ -45,12 +45,13 @@ function afficherReponses($pdo, $id_parent, $niveau = 1) {
         echo '</form>';
 
         // Signaler
-        echo '<form method="POST" action="../signaler.php" style="display:inline-block;margin-top:5px;">';
+        echo '<form method="POST" action="signaler.php" style="margin-top:5px;">';
         echo '<input type="hidden" name="id_commentaire" value="' . $r['id'] . '">';
         echo '<input type="text" name="raison" placeholder="Raison du signalement" required>';
         echo '<button type="submit">Signaler</button>';
         echo '</form>';
 
+        // Appel récursif
         afficherReponses($pdo, $r['id'], $niveau + 1);
 
         echo '</div>';

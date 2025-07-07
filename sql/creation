@@ -10,53 +10,16 @@ CREATE TABLE users (
     code SMALLINT NOT NULL
 )
 
-CREATE TABLE
 
-
-
-<!--  <script>-->
-<!--    // Fonction pour définir le destinataire-->
-<!--    function setDestinataire(email) {-->
-<!--      document.getElementById('destinataire').value = email;-->
-<!--    }-->
-<!---->
-<!--    // Compteur de caractères-->
-<!--    const contenuTextarea = document.getElementById('contenu');-->
-<!--    const charCount = document.getElementById('charCount');-->
-<!--    const submitBtn = document.getElementById('submitBtn');-->
-<!---->
-<!--    contenuTextarea.addEventListener('input', function() {-->
-<!--      const length = this.value.length;-->
-<!--      charCount.textContent = length;-->
-<!---->
-<!--      if (length < 10) {-->
-<!--        charCount.style.color = '#dc3545';-->
-<!--        submitBtn.disabled = true;-->
-<!--      } else {-->
-<!--        charCount.style.color = '#28a745';-->
-<!--        submitBtn.disabled = false;-->
-<!--      }-->
-<!--    });-->
-<!---->
-<!--    // Validation du formulaire-->
-<!--    document.getElementById('messageForm').addEventListener('submit', function(e) {-->
-<!--      const email = document.getElementById('email').value;-->
-<!--      const destinataire = document.getElementById('destinataire').value;-->
-<!--      const objet = document.getElementById('objet').value;-->
-<!--      const contenu = document.getElementById('contenu').value;-->
-<!---->
-<!--      if (!email || !destinataire || !objet || contenu.length < 10) {-->
-<!--        e.preventDefault();-->
-<!--        alert('Veuillez remplir tous les champs correctement.');-->
-<!--        return;-->
-<!--      }-->
-<!---->
-<!--      // Confirmation avant envoi-->
-<!--      if (!confirm('Êtes-vous sûr de vouloir envoyer ce message ?')) {-->
-<!--        e.preventDefault();-->
-<!--      }-->
-<!--    });-->
-<!---->
-<!--    // Initialisation du compteur-->
-<!--    contenuTextarea.dispatchEvent(new Event('input'));-->
-<!--  </script>-->
+CREATE TABLE reports (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    type_probleme VARCHAR(100) NOT NULL,
+    urgence ENUM('Critique', 'Haute', 'Normale', 'Basse') NOT NULL,
+    description TEXT NOT NULL,
+    date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) NOT NULL DEFAULT 'En attente',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

@@ -14,7 +14,9 @@ header {
   color: rgb(100, 7, 62);
   padding: 1.5rem;
   text-align: center;
+  line-height: 1.6; /* <-- ici, augmente un peu cette valeur */
 }
+
 
 nav {
   margin-top: 1rem;

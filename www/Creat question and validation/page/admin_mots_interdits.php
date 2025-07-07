@@ -6,7 +6,7 @@
         exit;
     }
 
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
+    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nouveau_mot"])) {
         $mot = trim($_POST["nouveau_mot"]);

@@ -19,7 +19,7 @@ if (!isset($_SESSION['userId'])) {
 </head>
 <?php
 include "../../sql/database.php";
-$connect = mysqli_connect("localhost", "root", "root", "coding_faq");
+$connect = mysqli_connect("localhost", "root", "", "coding_faq");
 
 // Récupération des données de l'utilisateur connecté
 $query = "SELECT * FROM users WHERE id_user = ?";

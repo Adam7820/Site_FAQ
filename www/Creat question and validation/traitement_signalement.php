@@ -1,7 +1,7 @@
 <?php
     session_start();
-    if (!($_SESSION['id_user'] ?? null)) die("Non autorisé");
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8","root","root");
+    if (!($_SESSION['userId'] ?? null)) die("Non autorisé");
+    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8","root","");
     $cid = intval($_POST['cid']);
     $uid = intval($_POST['uid']);
     $act = $_POST['action'];
@@ -21,5 +21,5 @@
         $pdo->prepare("DELETE FROM bannissements WHERE id_user=?")->execute([$uid]);
     }
 
-    header("Location: admin_signalements.php");
+    header("Location: page/admin_signalements.php");
     exit;

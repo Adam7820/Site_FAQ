@@ -1,13 +1,13 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Responsable') {
+    if (!isset($_SESSION['userId']) || $_SESSION['userId']['role'] !== 'Responsable') {
         echo "⛔ Accès refusé.";
         exit;
     }
 
     try {
-        $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
+        $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         die("Erreur : " . $e->getMessage());

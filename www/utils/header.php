@@ -7,7 +7,7 @@ $isResponsable = false;
 $isAdmin = false;
 
 if (isset($_SESSION['userId'])) {
-    $connect = mysqli_connect("localhost", "root", "root", "coding_faq");
+    $connect = mysqli_connect("localhost", "root", "", "coding_faq");
     $userId = $_SESSION['userId'];
     $query = "SELECT role FROM users WHERE id_user = ?";
     $stmt = mysqli_prepare($connect, $query);
@@ -69,6 +69,10 @@ if (isset($_SESSION['userId'])) {
 
       <?php if ((basename($_SERVER['PHP_SELF']) != 'admin.php') && $isResponsable): ?>
         <a href="/Site_FAQ/www/user/admin.php">Administration</a>
+      <?php endif; ?>
+
+      <?php if ((basename($_SERVER['PHP_SELF']) != 'admin.php') && $isResponsable): ?>
+          <a href="/Site_FAQ/www/Creat question and validation/page/admin_signalements.php">Signalements</a>
       <?php endif; ?>
 
       <?php if ((basename($_SERVER['PHP_SELF']) != 'respondable.php') && $isAdmin || $isResponsable): ?>

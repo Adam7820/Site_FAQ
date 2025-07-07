@@ -1,19 +1,19 @@
 <?php
 session_start();
 
-$_SESSION['user'] = [
-    'id_user' => 1,
-    'role' => 'Responsable',
-    'email' => 'responsable@example.com'
-];
-
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Responsable') {
-    echo "⛔ Accès refusé. Seuls les responsables peuvent accéder à cette page.";
-    exit;
-}
+//$_SESSION['user'] = [
+//    'id_user' => 1,
+//    'role' => 'Responsable',
+//    'email' => 'responsable@example.com'
+//];
+//
+//if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Responsable') {
+//    echo "⛔ Accès refusé. Seuls les responsables peuvent accéder à cette page.";
+//    exit;
+//}
 
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
+    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Erreur : " . $e->getMessage());
