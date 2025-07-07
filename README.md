@@ -11,6 +11,6 @@ Fonctionnalitées du site:
 - Signaler une question innapropriée,
 - Une page messagerie pour pouvoir contacter l'école,
 - une page gestion des utilisateurs (admin),
-- une page permettant aux élèves de remontter un problème.
+- une page permettant aux élèves de remonter un problème.
 
 Technologies Frontend/Backend : HTML, CSS, SQL, PHP, JavaScript, PHPmailer
