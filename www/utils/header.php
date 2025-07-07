@@ -7,7 +7,7 @@ $isResponsable = false;
 $isAdmin = false;
 
 if (isset($_SESSION['userId'])) {
-    $connect = mysqli_connect("localhost", "root", "", "coding_faq");
+    $connect = mysqli_connect("localhost", "root", "root", "coding_faq");
     $userId = $_SESSION['userId'];
     $query = "SELECT role FROM users WHERE id_user = ?";
     $stmt = mysqli_prepare($connect, $query);

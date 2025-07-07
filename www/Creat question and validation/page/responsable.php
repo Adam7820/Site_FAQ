@@ -13,7 +13,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Responsable') {
 }
 
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
+    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "root");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Erreur : " . $e->getMessage());
