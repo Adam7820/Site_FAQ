@@ -4,7 +4,7 @@
     error_reporting(E_ALL);
 
     try {
-        $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
+        $pdo = new PDO("mysql:host=localhost;dbname=svtozq_codingfaq;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         die("Erreur de connexion à la base : " . $e->getMessage());

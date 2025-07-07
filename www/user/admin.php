@@ -8,7 +8,7 @@ if (!isset($_SESSION['userId'])) {
     exit;
 }
 
-$connect = mysqli_connect("localhost", "root", "", "coding_faq");
+$connect = mysqli_connect("localhost", "root", "", "svtozq_codingfaq");
 
 $userId = $_SESSION['userId'];
 $query = "SELECT role FROM users WHERE id_user = ?";

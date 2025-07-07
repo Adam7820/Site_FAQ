@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8","root","");
+$pdo = new PDO("mysql:host=localhost;dbname=svtozq_codingfaq;charset=utf8","root","");
 $id_user = $_SESSION['userId'] ?? null;
 if (!$id_user) {
     die("⛔ Vous devez être connecté pour commenter.");

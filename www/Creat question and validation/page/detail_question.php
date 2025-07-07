@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8", "root", "");
+$pdo = new PDO("mysql:host=localhost;dbname=svtozq_codingfaq;charset=utf8", "root", "");
 $_SESSION['id_user'] = $_SESSION['userId'] ?? 1;
 
 $id_question = intval($_GET['id'] ?? 0);

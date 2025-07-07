@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8","root","");
+    $pdo = new PDO("mysql:host=localhost;dbname=svtozq_codingfaq;charset=utf8","root","");
     $id_commentaire = intval($_POST['id_commentaire']);
     $id_signaleur = $_SESSION['userId'] ?? die("Not logged");
     $raison = trim($_POST['raison']);

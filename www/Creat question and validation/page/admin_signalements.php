@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!($_SESSION['userId'] ?? null)) die("Non autorisé");
-$pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8","root","");
+$pdo = new PDO("mysql:host=localhost;dbname=svtozq_codingfaq;charset=utf8","root","");
 
 $sigs = $pdo->query("
   SELECT s.id AS sid, s.raison, s.date_signalement, c.id AS cid, c.id_user, c.contenu, u.first_name, u.last_name

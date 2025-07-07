@@ -2,7 +2,7 @@
 function db_connect() {
     try {
         $host = "localhost";
-        $dbname ="coding_faq"; // Nom de votre base de données
+        $dbname ="svtozq_codingfaq"; // Nom de votre base de données
         $user = "root"; // Nom d'utilisateur par défaut pour XAMPP
         $password = ""; // Mot de passe vide par défaut pour XAMPP
 

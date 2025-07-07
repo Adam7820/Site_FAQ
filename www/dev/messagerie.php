@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 if ((isset($_SESSION['userId']))){
     include "../../sql/database.php";
-    $connect = mysqli_connect("localhost", "root", "", "coding_faq");
+    $connect = mysqli_connect("localhost", "root", "", "svtozq_codingfaq");
 
     $userId = $_SESSION['userId'];
 

@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (!($_SESSION['userId'] ?? null)) die("Non autorisé");
-    $pdo = new PDO("mysql:host=localhost;dbname=coding_faq;charset=utf8","root","");
+    $pdo = new PDO("mysql:host=localhost;dbname=svtozq_codingfaq;charset=utf8","root","");
     $cid = intval($_POST['cid']);
     $uid = intval($_POST['uid']);
     $act = $_POST['action'];
